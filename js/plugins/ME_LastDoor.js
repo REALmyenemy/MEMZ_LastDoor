@@ -73,23 +73,13 @@ PluginManager.registerCommand("ME_LastDoor","transfer",args => {
 	
 	if (args)
 	{
-		var type=parseInt(args["Type"]);
-		var map=parseInt(args["Map"]);
-		var x=parseInt(args["X"]);
-		var y=parseInt(args["Y"]);
-		var direction=parseInt(args["Direction"]);
-		var transition=args["Transition"];
-		if (map&&x&&y)
-		{
-			if (!type)
-				type=0;
-			if (!direction)
-				direction=0;
-			if (!transition)
-				transition=0;
-			Game_Interpreter.prototype.ME_LD_reserveTransfer([type,map,x,y,direction,transition]);
-		}
-
+		var type=parseInt(args["Type"])||0;
+		var map=parseInt(args["Map"])||$gameMap._mapId;
+		var x=parseInt(args["X"])||$gamePlayer._x;
+		var y=parseInt(args["Y"])||$gamePlayer._y;
+		var direction=parseInt(args["Direction"])||0;
+		var transition=parseInt(args["Transition"])||0;
+		Game_Interpreter.prototype.ME_LD_reserveTransfer([type,map,x,y,direction,transition]);
 	}
 });
 
@@ -98,6 +88,7 @@ PluginManager.registerCommand("ME_LastDoor","return",args => {
 	{
 		if ($gamePlayer.ME_LastDoor&&$gamePlayer.ME_LastDoor.length>3)
 		{
+			console.log($gamePlayer.ME_LastDoor)
 			return Game_Interpreter.prototype.command201($gamePlayer.ME_LastDoor);
 		}
 	}
