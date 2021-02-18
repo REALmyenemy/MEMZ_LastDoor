@@ -88,7 +88,6 @@ PluginManager.registerCommand("ME_LastDoor","return",args => {
 	{
 		if ($gamePlayer.ME_LastDoor&&$gamePlayer.ME_LastDoor.length>3)
 		{
-			console.log($gamePlayer.ME_LastDoor)
 			return Game_Interpreter.prototype.command201($gamePlayer.ME_LastDoor);
 		}
 	}
